@@ -1,0 +1,25 @@
+.Cabecalho{
+    background-color: #fff;
+}
+
+#cabeca-modal{
+    background-color:#678fff;
+}
+
+#cabeca-modal h4{
+   color:white;
+}
+
+.tabelaClicked:hover{
+    background: #c8d9e8;
+}
+
+.linha{
+    background-color:#faad3a;
+}
+
+.inputShow{
+    background: #eaf0f7;
+    pointer-events: none;
+    font-weight: bold;
+}
