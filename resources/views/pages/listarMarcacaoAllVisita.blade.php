@@ -35,7 +35,11 @@
                                 </thead>
                                 <tbody>
                                 @foreach($marcacoes as $marcacao)
+                                @if(Auth::user()->tipo==1)
+                                    <tr class="tabelaClicked">
+                                @else
                                     <tr class="tabelaClicked clickable-row" data-href='{{ url("verVisitante/{$marcacao->id_marcacao}") }}'>
+                                @endif        
                                         <td>
                                             <img src="{{ asset('images/visitor.jpg') }}" alt="" class="rounded-circle thumb-sm mr-1">
                                         </td>

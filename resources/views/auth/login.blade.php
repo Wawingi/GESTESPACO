@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <!-- Log In page -->
-<div class="row vh-100 ">
+<div style="background-image: url('images/fundo.jpg');background-repeat: no-repeat;background-size: cover" class="row vh-100 ">
     <div class="col-12 align-self-center">
         <div class="auth-page"><br><br>
             <div class="card auth-card shadow-lg">
@@ -90,7 +90,7 @@
                 pattern: "O padrão do username é inválido.",
 			},
             password: {
-				required: "O email deve ser fornecido"
+				required: "A senha deve ser fornecida"
 			}
 		},
 		errorElement: "em",

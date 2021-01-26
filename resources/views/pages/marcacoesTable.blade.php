@@ -20,9 +20,14 @@
         @endif
     </td>
     <td>
-        <a href='{{ url("verVisitante/{$marcacao->id_marcacao}") }}' class="float-right btn btn-sm btn-round btn-success"><i class="mdi mdi-eye mr-2"></i> Ver Marcação</a>
+        @if(Auth::user()->tipo!=1)
+            <a href='{{ url("verVisitante/{$marcacao->id_marcacao}") }}' class="float-right btn btn-sm btn-round btn-success"><i class="mdi mdi-eye mr-2"></i> Ver Marcação</a>
+        @endif
+
         @if($marcacao->data_saida==null)
-            <a href='{{ url("marcarSaida/{$marcacao->id_marcacao}") }}' class="float-right btn btn-sm btn-round  mr-1 btn-warning"><i class="mdi mdi-exit-run mr-2"></i> Marcar Saída</a>
+            @if(Auth::user()->tipo==0 || Auth::user()->tipo==1)
+                <a href='{{ url("marcarSaida/{$marcacao->id_marcacao}") }}' class="float-right btn btn-sm btn-round  mr-1 btn-warning"><i class="mdi mdi-exit-run mr-2"></i> Marcar Saída</a>
+            @endif
         @endif
     </td>
 </tr>

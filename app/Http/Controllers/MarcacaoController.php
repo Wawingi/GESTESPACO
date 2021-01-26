@@ -9,6 +9,7 @@ use App\Model\Marcacao;
 use App\Model\Pessoa;
 use App\Model\Atendimento;
 use App\Model\Departamento;
+use Illuminate\Support\Facades\Auth;
 
 class MarcacaoController extends Controller
 {
@@ -21,6 +22,26 @@ class MarcacaoController extends Controller
     public function getAllMarcacaoVisita(){
         $marcacoes = Marcacao::getHistoricoVisita();
         return view('pages.listarMarcacaoAllVisita',compact('marcacoes'));
+    }
+
+    //Marcações de visitantes de um DPTO
+    public function listarMarcacaoDepartamento(){
+        //Get Departmento de um user logado
+        $departamento=Pessoa::getFuncionario(Auth::user()->id);
+
+        $marcacoes=Marcacao::getMarcacoesDepartamento($departamento,Carbon::now()->toDateString());
+        return view('pages.listarMarcacaoDepartamento',compact('marcacoes'));
+        //dd($marcacoes);
+    }
+
+    //Histórico de Marcações de visitantes de um DPTO
+    public function listarhistoricoVisitaDepartamento(){
+        //Get Departmento de um user logado
+        $departamento=Pessoa::getFuncionario(Auth::user()->id);
+        
+        $marcacoes=Marcacao::getHistoricoMarcacoesDepartamento($departamento);
+        return view('pages.listarHistoricoDepartamento',compact('marcacoes'));
+        //dd($marcacoes);
     }
 
     public function registarMarcacao(Request $request){

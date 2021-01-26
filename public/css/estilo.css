@@ -23,3 +23,7 @@
     pointer-events: none;
     font-weight: bold;
 }
+
+#texto-centro{
+    text-align: center;
+}

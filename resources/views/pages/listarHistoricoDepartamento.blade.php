@@ -11,7 +11,7 @@
                         <li class="breadcrumb-item"><a href="javascript:void(0);">Listar Visitantes</a></li>
                     </ol>
                 </div>
-                <h4 class="page-title">Visitantes de Hoje</h4>
+                <h4 class="page-title">Histórico de Visitantes do Departamento</h4>
             </div>
         </div>
     </div>
@@ -69,12 +69,26 @@
                                         <th>Nome</th>
                                         <th>Genero</th>
                                         <th>Entrada</th>
-                                        <th>Saída</th>
-                                        <th></th>
+                                        <th>Departamento</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tabelaMarcacoes">
-                                   
+                                <tbody>
+                                @foreach($marcacoes as $marcacao)
+                                <tr class="tabelaClicked clickable-row" data-href='{{ url("verVisitante/{$marcacao->id_marcacao}") }}'>
+                                    <td>
+                                        <img src="{{ asset('images/visitor.jpg') }}" alt="" class="rounded-circle thumb-sm mr-1">
+                                    </td>
+                                    <td>{{$marcacao->nome}}</td>
+                                    <td>
+                                        @if($marcacao->genero==1)
+                                            MASCULINO 
+                                        @else 
+                                            FEMININO
+                                        @endif
+                                    </td>
+                                    <td>{{ date('d-m-Y H:i:s',strtotime($marcacao->data_entrada)) }}</td>
+                                    <td>{{$marcacao->departamento}}</td>
+                                @endforeach  
                                 </tbody>
                             </table>
                         </div>
@@ -101,7 +115,11 @@
 			}
         })
     }
-
     carregarDataTable();
+    jQuery().ready(function(){
+        $(".clickable-row").click(function(){
+            window.location = $(this).data("href");
+        });
+    });
 </script>
 @stop

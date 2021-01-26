@@ -30,7 +30,6 @@
                                 <select id="estado" name="estado" class="custom-select">
                                     <option value="1">Encaminhar ao Departamento</option>
                                     <option value="2">Atendido</option>
-                                    <option value="3">Agendar</option>
                                 </select>         
                             </div>
                         </div>

@@ -42,7 +42,18 @@
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
                     <img src="{{ asset('images/users/user.jpg') }}" alt="profile-user" class="rounded-circle" /> 
-                    <span class="ml-1 nav-user-name hidden-sm">{{Auth::user()->name}}<i class="mdi mdi-chevron-down"></i> </span>
+                    <span class="ml-1 nav-user-name hidden-sm">{{Auth::user()->name}} - 
+                        @if(Auth::user()->tipo==0) 
+                            Administrador 
+                        @elseif(Auth::user()->tipo==1)
+                            Portaria 
+                        @elseif(Auth::user()->tipo==2)
+                            Secretaria Geral
+                        @elseif(Auth::user()->tipo==3)
+                            Secretaria Departamental
+                        @endif
+                    <i class="mdi mdi-chevron-down"></i>
+                    </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i> Perfil</a>

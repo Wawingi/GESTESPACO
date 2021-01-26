@@ -139,9 +139,7 @@ class ProdutoController extends Controller
     }
 
     public function verNotaEntrega(){
-        
-        $pdf = PDF::loadView('pages.pdfNotaEntrega');
-        //PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('pages.pdfNotaEntrega')->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->setPaper('a4')->stream('pages.pdfNotaEntrega');
     }
 

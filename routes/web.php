@@ -37,11 +37,15 @@ Route::post('registarFuncionario','PessoaController@registarFuncionario');
 Route::get('marcacoesVisitantePage', function () {
     return view('pages.listarMarcacaoVisitante');
 });
+
+//Marcações
 Route::get('listarMarcacaoVisitante','MarcacaoController@listarMarcacaoVisitante');
 Route::post('registarMarcacao','MarcacaoController@registarMarcacao');
 Route::get('verVisitante/{id}','MarcacaoController@verVisitante');
 Route::get('listarMarcacaoAllVisita','MarcacaoController@getAllMarcacaoVisita');
 Route::get('marcarSaida/{id}','MarcacaoController@marcarSaida');
+Route::get('marcacoesVisitaDepartamento','MarcacaoController@listarMarcacaoDepartamento');
+Route::get('historicoVisitaDepartamento','MarcacaoController@listarhistoricoVisitaDepartamento');
 
 Route::post('registarAtendimento','AtendimentoController@registarAtendimento');
 

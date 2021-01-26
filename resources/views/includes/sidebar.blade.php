@@ -4,8 +4,16 @@
         <li>
             <a href="javascript: void(0);"><i style="color:#fff" class="ti-user"></i><span>Visitantes</span><span class="menu-arrow"><i  class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
-                <li class="nav-item"><a class="nav-link" href="{{ url('marcacoesVisitantePage') }}"><i class="ti-control-record"></i>Listar Visitantes</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url('listarMarcacaoAllVisita') }}"><i class="ti-control-record"></i>Histórico de Visita</a></li>
+                @if(Auth::user()->tipo==3)
+                    <li class="nav-item"><a class="nav-link" href="{{ url('marcacoesVisitaDepartamento') }}"><i class="ti-control-record"></i>Visitantes Hoje</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('historicoVisitaDepartamento') }}"><i class="ti-control-record"></i>Histórico Visitas</a></li>
+                @endif
+                @if(Auth::user()->tipo!=3)
+                    <li class="nav-item"><a class="nav-link" href="{{ url('marcacoesVisitantePage') }}"><i class="ti-control-record"></i>Listar Visitantes</a></li>
+                @endif
+                @if(Auth::user()->tipo!=3)
+                    <li class="nav-item"><a class="nav-link" href="{{ url('listarMarcacaoAllVisita') }}"><i class="ti-control-record"></i>Histórico de Visita</a></li>
+                @endif
             </ul>
         </li>
         
