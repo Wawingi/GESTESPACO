@@ -9,6 +9,7 @@ use App\Model\Saida;
 use App\Model\ProdutoSaida;
 use App\Model\Destino;
 use PDF;
+use Dompdf\Dompdf;
 
 class ProdutoController extends Controller
 {
@@ -134,13 +135,35 @@ class ProdutoController extends Controller
     }
 
     public function listarSaidas(){
-        $saidas = DB::table('saida')->select('referencia')->distinct()->get();
+        $saidas = DB::table('saida')
+                ->select('id','referencia')
+                //->groupBy('referencia')
+                ->get();
+
         return view('pages.listarSaidas',compact('saidas'));
     }
 
-    public function verNotaEntrega(){
-        $pdf = PDF::loadView('pages.pdfNotaEntrega')->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->setPaper('a4')->stream('pages.pdfNotaEntrega');
+    public function verNotaEntrega($id,$referencia){
+        //Cabeça PDF
+        $saida=DB::table('saida')
+                ->join('destino','destino.id','=','saida.recebedor')
+                ->where('saida.id','=',$id)
+                ->first();
+
+        //Tabela PDF Produtos
+        $produtos=DB::table('saida')
+                ->join('produto_saida','produto_saida.id_saida','=','saida.id')
+                ->join('produto','produto.id','=','produto_saida.id_produto')
+                ->select('produto.designacao','saida.quantidade')
+                ->where('saida.referencia','=',$referencia)
+                ->get();
+            //dd($produtos);
+
+        $image1 = base64_encode(file_get_contents(public_path('/images/mpla.png')));
+        $image2 = base64_encode(file_get_contents(public_path('/images/mpla2.png')));
+    
+        $pdf = PDF::loadView('pages.pdfNotaEntrega',compact('saida','produtos','image1','image2'))->setOptions(['debugKeepTemp' => true, 'defaultFont' => 'sans-serif']);
+        return $pdf->setPaper('a4')->stream('Relatorio.pdf');
     }
 
 }

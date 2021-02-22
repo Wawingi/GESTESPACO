@@ -55,10 +55,14 @@ Route::get('verProduto/{id}','ProdutoController@verProduto');
 Route::post('registarSaida','ProdutoController@registarSaida');
 Route::get('listarSaidasProduto/{idProduto}','ProdutoController@listarSaidasProduto');
 Route::get('listarSaidas','ProdutoController@listarSaidas');
-Route::get('verNotaEntrega','ProdutoController@verNotaEntrega');
+Route::get('verNotaEntrega/{id}/{referencia}','ProdutoController@verNotaEntrega');
 
 Route::get('entregarProduto', function(){
     return view('pages.entregarProduto');
+});
+
+Route::get('verNotaEntregaa', function(){
+    return view('pages.pdfNotaEntrega');
 });
 
 

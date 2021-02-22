@@ -63,7 +63,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$saida->referencia}}</td>
                                         <td>
-                                            <a href='{{ url("verNotaEntrega") }}' class="float-right btn btn-sm btn-round btn-success"><i class="mdi mdi-eye mr-2"></i>Ver Nota de Entrega</a>
+                                            <a href='{{ url("verNotaEntrega/{$saida->id}/{$saida->referencia}") }}' class="float-right btn btn-sm btn-round btn-success"><i class="mdi mdi-eye mr-2"></i>Ver Nota de Entrega</a>
                                         </td>
                                     </tr>
                                     @endforeach
